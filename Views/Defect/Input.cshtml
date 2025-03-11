@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Input Defect";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstarpcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<style>
+    h2 {
+        color: #0F58A8;
+        text-align: center;
+    }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
+<div class="container">
+    <h2 class="text-header">Input Defect</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form class="form-input" asp-action="InputDefect" method="post">
+                <div class="mb-3">
+                    <label for="serialNumber" class="form-label">Serial Number</label>
+                    <input type="text" id="serialNumber" name="SerialNumber" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="lineProduction" class="form-label">Line Production</label>
+                    <select id="lineProduction" name="LineProductionId" class="form-control">
+                        <option value="">Select Line Production</option>
+                        @foreach (var line in ViewBag.LineProductions)
+                        {
+                            <option value="@line.Id">@line.LineProductionName</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="defectRecord" class="form-label">Defect Record</label>
+                    <select id="defectRecord" name="DefectId" class="form-control" >
+                        <option value="">Select Defect</option>
+                        @foreach (var defect in ViewBag.Defects)
+                        {
+                            <option value="@defect.DefectId">@defect.DefectName</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" name="Notes" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        new TomSelect("#defectRecord", {
+            create: true, 
+            sortField: {
+                field: "text",
+                direction: "asc"
+            },
+            placeholder: "Select or Add Defect",
+        });
+    });
+</script>
