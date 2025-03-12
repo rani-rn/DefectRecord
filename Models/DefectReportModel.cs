@@ -6,8 +6,7 @@ public class DefectReport {
     public int ReportId { get; set; }
     [StringLength(20)] 
     public string SerialNumber {get; set;}
-    [StringLength(100)]
-    public string DefectName {get;  set;}
+    public string DefectId {get;  set;}
     [StringLength(250)]
     public string Description {get; set;}
     public string Status {get; set;}

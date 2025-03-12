@@ -1,5 +1,4 @@
-﻿
-html {
+﻿html {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -13,20 +12,22 @@ body {
   padding: 0;
   display: flex;
   flex-direction: row;
+  overflow-x: hidden;
 }
 
 .container-fluid {
   padding: 2.8%;
+  width: 100vw;
   position: relative;
   transition: all 0.3s ease-in-out;
   width: 100%;
+  background-color: white;
 }
 
 .container-fluid img {
   max-width: 200px !important; 
   height: auto;
 }
-
 
 .sidebar_menu {
   position: fixed;
@@ -60,26 +61,21 @@ body {
   background-color: #e0e0e0;
 }
 
-.nav-btn {
-  display: block;
-  width: 100%;
-  background-color: #d9d9d9;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #054a99;
-  text-align: center;
-  text-decoration: none; 
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.nav-btn a{
+  color: white !important; 
+  text-decoration: none !important;
+  display: flex; 
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn i {
+  color: white !important;
 }
 
 .nav-btn:hover {
   background-color: #bfbfbf;
 }
-
 
 .sidebar_menu ul {
   list-style: none;
@@ -114,9 +110,8 @@ body {
   color: #333;
 }
 
-
 .toggle-btn {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 10px;
   color: white;

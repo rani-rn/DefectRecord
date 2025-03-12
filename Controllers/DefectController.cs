@@ -15,27 +15,41 @@ namespace DefectRecord.Controllers
         {
             _context = context;
         }
-
-        [HttpGet]
-        public async Task<IActionResult> GetDefectList(string searchTerm)
-        {
-            var defects = await _context.Defect
-                .Where(d => string.IsNullOrEmpty(searchTerm) || d.DefectName.Contains(searchTerm))
-                .Select(d => new { id = d.DefectId.ToString(), text = d.DefectName })
-                .Take(10)
-                .ToListAsync();
-
-            return Json(defects);
-        }
-
+       
         [HttpGet]
         public async Task<IActionResult> Input()
         {
+            ViewBag.UserRoles = await _context.UserRoles.ToListAsync();
             ViewBag.Defects = await _context.Defect.ToListAsync();
             ViewBag.LineProductions = await _context.LineProductions.ToListAsync();
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> InputDefect(DefectReport defectReport){
+             if (ModelState.IsValid)
+            {
+                try
+                {
+                    defectReport.ReportDate = DateTime.Now;
+                    _context.DefectReports.Add(defectReport);
+                    await _context.SaveChangesAsync();
 
+                    TempData["SuccessMessage"] = "Defect successfully recorded.";
+                    return RedirectToAction("Input");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Error saving defect: " + ex.Message;
+                }
+            }
+
+            ViewBag.UserRoles = await _context.UserRoles.ToListAsync();
+            ViewBag.Defects = await _context.Defect.ToListAsync();
+            ViewBag.LineProductions = await _context.LineProductions.ToListAsync();
+
+            return View("Input",defectReport);
+        }
+        
     }
 }

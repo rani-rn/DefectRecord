@@ -251,12 +251,13 @@ C:\Panasonic\DefectRecord\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawin
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\515gxwdjjy-kfcwecnh4d.gz
 C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\kx3v3pdsdg-sqia1dtzfp.gz
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\sqyahofnh2-zxdjev0145.gz
-C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\m8tpmwpkr1-zxdjev0145.gz
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\DefectRecord.sourcelink.json
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\515gxwdjjy-l7sro3gkkw.gz
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\sqyahofnh2-um581wooo6.gz
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\m8tpmwpkr1-um581wooo6.gz
