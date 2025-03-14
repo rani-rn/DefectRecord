@@ -62,18 +62,15 @@ body[b-8wt96olzdq] {
   background-color: #e0e0e0;
 }
 
-.nav-btn a[b-8wt96olzdq]{
-  color: white !important; 
-  text-decoration: none !important;
-  display: flex; 
-  align-items: center;
-  gap: 8px;
-}
+
 
 .nav-btn i[b-8wt96olzdq] {
   color: white !important;
 }
-
+.nav-btn a[b-8wt96olzdq] {
+  color: white !important;
+  text-decoration: none;
+}
 .nav-btn:hover[b-8wt96olzdq] {
   background-color: #bfbfbf;
 }

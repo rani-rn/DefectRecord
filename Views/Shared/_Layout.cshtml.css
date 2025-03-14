@@ -61,18 +61,15 @@ body {
   background-color: #e0e0e0;
 }
 
-.nav-btn a{
-  color: white !important; 
-  text-decoration: none !important;
-  display: flex; 
-  align-items: center;
-  gap: 8px;
-}
+
 
 .nav-btn i {
   color: white !important;
 }
-
+.nav-btn a {
+  color: white !important;
+  text-decoration: none;
+}
 .nav-btn:hover {
   background-color: #bfbfbf;
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DefectRecord.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250312071847_ForeignKey")]
-    partial class ForeignKey
+    [Migration("20250314025451_Fixing")]
+    partial class Fixing
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,12 +50,10 @@ namespace DefectRecord.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReportId"));
 
-                    b.Property<string>("DefectId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DefectId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -69,6 +67,9 @@ namespace DefectRecord.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SerialNumber")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -79,6 +80,12 @@ namespace DefectRecord.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReportId");
+
+                    b.HasIndex("DefectId");
+
+                    b.HasIndex("LineProductionId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("DefectReports");
                 });
@@ -115,6 +122,33 @@ namespace DefectRecord.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("DefectReport", b =>
+                {
+                    b.HasOne("Defect", "Defect")
+                        .WithMany()
+                        .HasForeignKey("DefectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LineProduction", "LineProduction")
+                        .WithMany()
+                        .HasForeignKey("LineProductionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UserRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Defect");
+
+                    b.Navigation("LineProduction");
+
+                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }

@@ -32,13 +32,20 @@ html {
   align-items: center;
   justify-content: center;
   margin-top: 50px;
-  margin-left: 100px;
+  padding-left: 60px;
   /* background-color: yellow;  */
 }
 
 .text-header h2{ 
   color: #0F58A8;
-  margin-left: 100px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+h2{
+  color: #0F58A8;
+  text-align: center;
 }
 
 .form-control {
@@ -46,24 +53,67 @@ html {
   background-color: #D9D9D9;
 }
 
-@media screen and (max-width: 1024px) {
-  .container {
-    margin-left: 220px;
-    margin-top: 60px;
-  }
+.alert {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
 }
+
+.alert-info {
+  background-color: #d9edf7;
+  color: #31708f;
+  border: 1px solid #bce8f1;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+  border: 1px solid #faebcc;
+}
+
+.alert-error {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+}
+
+.alert .close {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
   .main-content {
-    margin-left: 0;
     width: 100%;
-    padding: 15px;
+  }
+  .container{
+    padding-left: 0px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .main-content {
     width: 100%;
-    padding: 10px;
+  }
+  .container{
+    padding-left: 0px;
   }
 }

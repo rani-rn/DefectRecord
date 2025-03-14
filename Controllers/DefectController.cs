@@ -15,7 +15,7 @@ namespace DefectRecord.Controllers
         {
             _context = context;
         }
-       
+
         [HttpGet]
         public async Task<IActionResult> Input()
         {
@@ -25,9 +25,20 @@ namespace DefectRecord.Controllers
             return View();
         }
 
+        public IActionResult Record()
+        {
+            var defectReports = _context.DefectReports
+                                .Include(d => d.Defect)
+                                .Include(d => d.LineProduction)
+                                .Include(d => d.Role)
+                                .ToList();
+            return View(defectReports);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> InputDefect(DefectReport defectReport){
-             if (ModelState.IsValid)
+        public async Task<IActionResult> InputDefect(DefectReport defectReport)
+        {
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -48,8 +59,8 @@ namespace DefectRecord.Controllers
             ViewBag.Defects = await _context.Defect.ToListAsync();
             ViewBag.LineProductions = await _context.LineProductions.ToListAsync();
 
-            return View("Input",defectReport);
+            return View("Input", defectReport);
         }
-        
+
     }
 }
