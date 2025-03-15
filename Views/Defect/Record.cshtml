@@ -68,7 +68,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/Defect/DeleteConfirmed/' + reportId,
+                    url: '/Defect/Delete/' + reportId,
                     type: 'POST',
                     success: function () {
                         Swal.fire(

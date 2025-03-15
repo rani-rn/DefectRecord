@@ -23,7 +23,7 @@ public class DefectReport {
     public int RoleId { get; set; }
 
     [Required]
-public DateTime ReportDate { get; set; }
+    public DateTime ReportDate { get; set; }
 
      [ForeignKey("LineProductionId")]
     public LineProduction LineProduction { get; set; }

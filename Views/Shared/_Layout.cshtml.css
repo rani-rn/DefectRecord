@@ -63,15 +63,13 @@ body {
 
 
 
-.nav-btn i {
+.nav-btn {
   color: white !important;
 }
-.nav-btn a {
-  color: white !important;
-  text-decoration: none;
-}
+
 .nav-btn:hover {
-  background-color: #bfbfbf;
+  background-color: #d1e8ff;
+  color: #0F58A8;
 }
 
 .sidebar_menu ul {

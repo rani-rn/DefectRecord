@@ -25,16 +25,19 @@
     <div class="sidebar_menu">
         <button class="btn-input" onclick="location.href='@Url.Action("Input", "Defect")'">Input Defect</button>
         <ul>
-            <li>
-                    <a class="nav-btn" asp-controller="Home" asp-action="Index">
-                        <i class="fas fa-gauge"></i>Dashboard 
-                    </a> 
+            <li class="nav-btn">
+                <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-gauge"></i>
+                    <span class="d-md-none d-sm-inline">Dashboard</span>
+                </a>
             </li>
-            <li>
-                    <a class="nav-btn" asp-controller="Defect" asp-action="Record">
-                        <i class="fas fa-table-list"></i>Record 
-                    </a>
+            <li class="nav-btn">
+                <a class="nav-link active" asp-controller="Defect" asp-action="Record">
+                        <i class="fas fa-table-list"></i>
+                    <span class="d-md-none d-sm-inline">Record</span>
+                </a>
             </li>
+                       
         </ul>
     </div>
 

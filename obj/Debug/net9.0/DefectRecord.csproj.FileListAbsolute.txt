@@ -258,6 +258,6 @@ C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityF
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 C:\Panasonic\DefectRecord\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Panasonic\DefectRecord\obj\Debug\net9.0\DefectRecord.sourcelink.json
-C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\sqyahofnh2-3ey47skc2p.gz
-C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\m8tpmwpkr1-3ey47skc2p.gz
 C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\515gxwdjjy-8zhvvs3vs0.gz
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\sqyahofnh2-cfv11jwfez.gz
+C:\Panasonic\DefectRecord\obj\Debug\net9.0\compressed\m8tpmwpkr1-cfv11jwfez.gz

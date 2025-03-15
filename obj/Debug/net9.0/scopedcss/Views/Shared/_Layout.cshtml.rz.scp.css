@@ -63,15 +63,13 @@ body[b-8wt96olzdq] {
 
 
 
-.nav-btn i[b-8wt96olzdq] {
+.nav-btn[b-8wt96olzdq] {
   color: white !important;
 }
-.nav-btn a[b-8wt96olzdq] {
-  color: white !important;
-  text-decoration: none;
-}
+
 .nav-btn:hover[b-8wt96olzdq] {
-  background-color: #bfbfbf;
+  background-color: #d1e8ff;
+  color: #0F58A8;
 }
 
 .sidebar_menu ul[b-8wt96olzdq] {

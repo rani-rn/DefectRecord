@@ -12,5 +12,5 @@ public class ApplicationDbContext : DbContext {
     public DbSet<DefectReport> DefectReports {get;set;}
     public DbSet<LineProduction> LineProductions {get; set;}
     public DbSet<UserRole> UserRoles {get; set;}
-}
+    }
 }
