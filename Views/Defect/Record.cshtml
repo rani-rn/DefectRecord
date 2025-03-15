@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Record List";
 }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="container">
     <h2 class="text-header">Record</h2>
@@ -23,14 +24,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @{
                             int index = 1;
                         }
                         @foreach (var defect in Model)
                         {
-                            <tr class="text-center">
+                            <tr id="row-@defect.ReportId" class="text-center">
                                 <td>@index</td>
                                 <td>@defect.SerialNumber</td>
                                 <td>@defect.Defect?.DefectName</td>
@@ -42,12 +42,14 @@
                                 <td>@defect.ReportDate</td>
                                 <td>
                                     <a asp-controller="Defect" asp-action="Edit" class="btn btn-sm btn-warning">Edit</a>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="confirmDelete(@defect.ReportId)">Delete</button>
                                 </td>
                             </tr>
                             index++;
                         }
                     </tbody>
+
 
                 </table>
             </div>
@@ -68,16 +70,27 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/Defect/Delete/' + reportId,
+                    url: '/Defect/Delete',
                     type: 'POST',
-                    success: function () {
-                        Swal.fire(
-                            'Deleted!',
-                            'Defect record deleted successfully.',
-                            'success'
-                        ).then(() => {
-                            location.reload();
-                        });
+                    data: { id: reportId },
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Deleted!',
+                                response.message,
+                                'success'
+                            );
+
+                            $("#row-" + reportId).fadeOut(500, function () {
+                                $(this).remove();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.message,
+                                'error'
+                            );
+                        }
                     },
                     error: function () {
                         Swal.fire(
