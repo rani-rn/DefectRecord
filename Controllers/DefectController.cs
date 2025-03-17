@@ -20,12 +20,35 @@ namespace DefectRecord.Controllers
         [HttpGet]
         public async Task<IActionResult> Input()
         {
-            await LoadViewBagData(); // Load dropdown data
+            await LoadViewBagData();
             return View();
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetChartData()
+        {
+            var data = _context.DefectReports
+                .GroupBy(d => d.DefectId)
+                .Select(g => new
+                {
+                    Label = _context.Defect
+                        .Where(d => d.DefectId == g.Key)
+                        .Select(d => d.DefectName)
+                        .FirstOrDefault(),
+                    Value = g.Count()
+                })
+                .ToList();
+
+            return Json(data);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Input( DefectReport defectReport)
+        public async Task<IActionResult> Input(DefectReport defectReport)
         {
             Console.WriteLine("POST method triggered!");
             Console.WriteLine($"SerialNumber: {defectReport.SerialNumber}, Reporter: {defectReport.Reporter}");
@@ -76,21 +99,20 @@ namespace DefectRecord.Controllers
         }
 
         [HttpPost]
-public async Task<IActionResult> Delete(int id)
-{
-    var defectReport = await _context.DefectReports.FindAsync(id);
-    if (defectReport == null)
-    {
-        return NotFound();
-    }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var defectReport = await _context.DefectReports.FindAsync(id);
+            if (defectReport == null)
+            {
+                return Json(new { success = false, message = "Data not found" });
+            }
 
-    _context.DefectReports.Remove(defectReport);
-    await _context.SaveChangesAsync();
-    Console.WriteLine($"DefectReport with ID {id} deleted successfully!");
+            _context.DefectReports.Remove(defectReport);
+            await _context.SaveChangesAsync();
+            Console.WriteLine($"DefectReport with ID {id} deleted successfully!");
 
-    return RedirectToAction("Record");
-}
-
+            return Json(new { success = true, message = "Record deleted successfully" });
+        }
 
         private async Task LoadViewBagData()
         {

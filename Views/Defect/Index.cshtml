@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    #chart {
+    max-width: 800px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+</style>
+<div class="container">
+    <h2 class="text-header">Dashboard</h2>
+    <div class="d-flex justify-content-center align-items-center">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetChartData", "Defect")',
+                type: 'GET',
+                success: function (data) {
+                    const labels = data.map(item => item.label);
+                    const values = data.map(item => item.value);
+
+                    new Chart(document.getElementById("chart"), {
+                        type: "bar",
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: "Defect Count",
+                                data: values,
+                                backgroundColor: "rgba(95, 246, 232, 0.8)",
+                                borderColor: "rgba(47, 163, 152, 0.8)",
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

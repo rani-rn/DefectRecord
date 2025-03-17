@@ -26,7 +26,7 @@
         <button class="btn-input" onclick="location.href='@Url.Action("Input", "Defect")'">Input Defect</button>
         <ul>
             <li class="nav-btn">
-                <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                <a class="nav-link active" asp-controller="Defect" asp-action="Index">
                         <i class="fas fa-gauge"></i>
                     <span class="d-md-none d-sm-inline">Dashboard</span>
                 </a>
@@ -51,6 +51,7 @@
             &copy; 2025 - DefectRecord
     </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
