@@ -98,6 +98,24 @@ namespace DefectRecord.Controllers
             return View(defectReports);
         }
 
+        [HttpGet]
+public async Task<IActionResult> Update(int id)
+{
+    var defectReport = await _context.DefectReports
+        .Include(d => d.Defect)
+        .Include(d => d.LineProduction)
+        .Include(d => d.Role)
+        .FirstOrDefaultAsync(d => d.ReportId == id);
+
+    if (defectReport == null)
+    {
+        return NotFound();
+    }
+
+    await LoadViewBagData();
+    return View(defectReport);
+}
+
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

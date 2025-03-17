@@ -41,7 +41,7 @@
                                 <td>@defect.Role?.RoleName</td>
                                 <td>@defect.ReportDate</td>
                                 <td>
-                                    <a asp-controller="Defect" asp-action="Edit" class="btn btn-sm btn-warning">Edit</a>
+                                    <a asp-controller="Defect" asp-action="Update" asp-route-id="@defect.ReportId" class="btn btn-sm btn-warning">Edit</a>
                                     <button class="btn btn-sm btn-danger"
                                         onclick="confirmDelete(@defect.ReportId)">Delete</button>
                                 </td>
@@ -49,8 +49,6 @@
                             index++;
                         }
                     </tbody>
-
-
                 </table>
             </div>
         </div>
