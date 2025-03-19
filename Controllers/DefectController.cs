@@ -50,25 +50,13 @@ namespace DefectRecord.Controllers
         [HttpPost]
         public async Task<IActionResult> Input(DefectReport defectReport)
         {
-            Console.WriteLine("POST method triggered!");
-            Console.WriteLine($"SerialNumber: {defectReport.SerialNumber}, Reporter: {defectReport.Reporter}");
 
             if (ModelState.IsValid)
             {
-                Console.WriteLine("ModelState is invalid!");
-
-                foreach (var error in ModelState)
-                {
-                    foreach (var err in error.Value.Errors)
-                    {
-                        Console.WriteLine($"Field: {error.Key}, Error: {err.ErrorMessage}");
-                    }
-                }
-
                 await LoadViewBagData();
                 return View(defectReport);
             }
-
+          
             var report = new DefectReport()
             {
                 SerialNumber = defectReport.SerialNumber,
