@@ -99,22 +99,49 @@ namespace DefectRecord.Controllers
         }
 
         [HttpGet]
-public async Task<IActionResult> Update(int id)
-{
-    var defectReport = await _context.DefectReports
-        .Include(d => d.Defect)
-        .Include(d => d.LineProduction)
-        .Include(d => d.Role)
-        .FirstOrDefaultAsync(d => d.ReportId == id);
+        public async Task<IActionResult> Update(int id)
+        {
+            var defectReport = await _context.DefectReports
+                .Include(d => d.Defect)
+                .Include(d => d.LineProduction)
+                .Include(d => d.Role)
+                .FirstOrDefaultAsync(d => d.ReportId == id);
 
-    if (defectReport == null)
-    {
-        return NotFound();
-    }
+            if (defectReport == null)
+            {
+                return NotFound();
+            }
 
-    await LoadViewBagData();
-    return View(defectReport);
-}
+            await LoadViewBagData();
+            return View(defectReport);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(DefectReport defectReport)
+        {
+            if (!ModelState.IsValid)
+            {
+                await LoadViewBagData();
+                return View(defectReport);
+            }
+
+            var existingReport = await _context.DefectReports.FindAsync(defectReport.ReportId);
+            if (existingReport == null)
+            {
+                return NotFound();
+            }
+            existingReport.Reporter = defectReport.Reporter;
+            existingReport.RoleId = defectReport.RoleId;
+            existingReport.LineProductionId = defectReport.LineProductionId;
+            existingReport.DefectId = defectReport.DefectId;
+            existingReport.Description = defectReport.Description;
+            existingReport.Status = defectReport.Status;
+
+            _context.DefectReports.Update(existingReport);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Record");
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

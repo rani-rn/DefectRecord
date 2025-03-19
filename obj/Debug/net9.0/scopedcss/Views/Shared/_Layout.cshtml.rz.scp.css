@@ -72,6 +72,15 @@ body[b-8wt96olzdq] {
   color: #0F58A8;
 }
 
+.nav-link span[b-8wt96olzdq]{
+  display: inline !important;
+  color: white;
+}
+
+.sidebar_menu[b-8wt96olzdq] {
+  color: white;
+}
+
 .sidebar_menu ul[b-8wt96olzdq] {
   list-style: none;
   padding: 0;
@@ -160,5 +169,9 @@ body[b-8wt96olzdq] {
 
   .sidebar_menu.closed[b-8wt96olzdq] {
     right: -100%;
+  }
+
+  .nav-link span[b-8wt96olzdq] {
+    display: inline;
   }
 }
