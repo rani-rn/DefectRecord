@@ -118,7 +118,7 @@ namespace DefectRecord.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(DefectReport defectReport)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await LoadViewBagData();
                 return View(defectReport);
