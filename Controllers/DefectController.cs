@@ -24,22 +24,20 @@ namespace DefectRecord.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await LoadViewBagData();
             return View();
         }
-
         [HttpGet]
-        public JsonResult GetChartData()
+        public JsonResult GetChartData(int? lineProductionId)
         {
             var data = _context.DefectReports
-                .GroupBy(d => d.DefectId)
+                .Where(d => !lineProductionId.HasValue || d.LineProductionId == lineProductionId)
+                .GroupBy(d => new { d.DefectId, d.Defect.DefectName })
                 .Select(g => new
                 {
-                    Label = _context.Defect
-                        .Where(d => d.DefectId == g.Key)
-                        .Select(d => d.DefectName)
-                        .FirstOrDefault(),
+                    Label = g.Key.DefectName,
                     Value = g.Count()
                 })
                 .ToList();
@@ -56,7 +54,7 @@ namespace DefectRecord.Controllers
                 await LoadViewBagData();
                 return View(defectReport);
             }
-          
+
             var report = new DefectReport()
             {
                 SerialNumber = defectReport.SerialNumber,

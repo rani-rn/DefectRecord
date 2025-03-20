@@ -25,7 +25,8 @@
         justify-content: center;
         align-items: center;
     }
-    .mb-3{
+
+    .mb-3 {
         padding-bottom: 0%;
     }
 </style>
@@ -34,8 +35,12 @@
 
     <div class="mb-3">
         <label for="lineProductionFilter" class="form-label">Filter by Line Production</label>
-        <select id="lineProductionFilter" class="form-select">
-            <option value="">All</option>
+        <select id="lineProduction" name="LineProductionId" class="form-control">
+            <option value="">All Line Production</option>
+            @foreach (var line in (ViewBag.LineProductions ?? new List<LineProduction>()))
+            {
+                <option value="@line.Id">@line.LineProductionName</option>
+            }
         </select>
     </div>
 
@@ -44,42 +49,60 @@
     </div>
 </div>
 
-
-
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $.ajax({
-                url: '@Url.Action("GetChartData", "Defect")',
-                type: 'GET',
-                success: function (data) {
-                    const labels = data.map(item => item.label);
-                    const values = data.map(item => item.value);
+            let chartInstance = null;
 
-                    new Chart(document.getElementById("chart"), {
-                        type: "bar",
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: "Defect Count",
-                                data: values,
-                                backgroundColor: "rgba(95, 246, 232, 0.8)",
-                                borderColor: "rgba(47, 163, 152, 0.8)",
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+            function loadChart(lineProductionId = '') {
+                $.ajax({
+                    url: '@Url.Action("GetChartData", "Defect")',
+                    type: 'GET',
+                    data: { lineProductionId: lineProductionId },
+                    success: function (data) {
+                        const labels = data.map(item => item.label);
+                        const values = data.map(item => item.value);
+
+                        if (chartInstance) {
+                            chartInstance.destroy();
+                        }
+
+                        const ctx = document.getElementById("chart").getContext("2d");
+                        chartInstance = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: "Defect Count",
+                                    data: values,
+                                    backgroundColor: "rgba(95, 246, 232, 0.8)",
+                                    borderColor: "rgba(47, 163, 152, 0.8)",
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
-                        }
-                    });
-                }
+                        });
+                    },
+                    error: function () {
+                        console.error("Error loading chart data.");
+                    }
+                });
+            }
+
+            loadChart();
+
+            $("#lineProduction").change(function () {
+                let selectedLineProductionId = $(this).val();
+                loadChart(selectedLineProductionId);
             });
         });
     </script>
