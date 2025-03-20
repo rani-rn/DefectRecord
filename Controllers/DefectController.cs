@@ -32,8 +32,10 @@ namespace DefectRecord.Controllers
         [HttpGet]
         public JsonResult GetChartData(int? lineProductionId)
         {
-            var data = _context.DefectReports
-                .Where(d => !lineProductionId.HasValue || d.LineProductionId == lineProductionId)
+            var query = _context.DefectReports
+                .Where(d => !lineProductionId.HasValue || d.LineProductionId == lineProductionId);
+
+            var chartData = query
                 .GroupBy(d => new { d.DefectId, d.Defect.DefectName })
                 .Select(g => new
                 {
@@ -42,8 +44,14 @@ namespace DefectRecord.Controllers
                 })
                 .ToList();
 
-            return Json(data);
+            var today = DateTime.Today;
+            var daily = query.Count(d => d.ReportDate.Date == today);
+            var weekly = query.Count(d => d.ReportDate >= today.AddDays(-7));
+            var monthly = query.Count(d => d.ReportDate >= today.AddMonths(-1));
+
+            return Json(new { chartData, daily, weekly, monthly });
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Input(DefectReport defectReport)
