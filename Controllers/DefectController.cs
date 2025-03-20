@@ -30,10 +30,25 @@ namespace DefectRecord.Controllers
             return View();
         }
         [HttpGet]
-        public JsonResult GetChartData(int? lineProductionId)
+        public JsonResult GetChartData(int? lineProductionId, string timePeriod = "daily")
         {
             var query = _context.DefectReports
                 .Where(d => !lineProductionId.HasValue || d.LineProductionId == lineProductionId);
+
+            var today = DateTime.Today;
+            DateTime startDate = today;
+
+            switch (timePeriod.ToLower())
+            {
+                case "weekly":
+                    startDate = today.AddDays(-7);
+                    break;
+                case "monthly":
+                    startDate = today.AddMonths(-1);
+                    break;
+            }
+
+            query = query.Where(d => d.ReportDate >= startDate);
 
             var chartData = query
                 .GroupBy(d => new { d.DefectId, d.Defect.DefectName })
@@ -44,13 +59,13 @@ namespace DefectRecord.Controllers
                 })
                 .ToList();
 
-            var today = DateTime.Today;
-            var daily = query.Count(d => d.ReportDate.Date == today);
-            var weekly = query.Count(d => d.ReportDate >= today.AddDays(-7));
-            var monthly = query.Count(d => d.ReportDate >= today.AddMonths(-1));
+            var daily = _context.DefectReports.Count(d => d.ReportDate.Date == today);
+            var weekly = _context.DefectReports.Count(d => d.ReportDate >= today.AddDays(-7));
+            var monthly = _context.DefectReports.Count(d => d.ReportDate >= today.AddMonths(-1));
 
             return Json(new { chartData, daily, weekly, monthly });
         }
+
 
 
         [HttpPost]
