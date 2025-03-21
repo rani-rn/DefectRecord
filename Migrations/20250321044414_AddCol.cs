@@ -5,7 +5,7 @@
 namespace DefectRecord.Migrations
 {
     /// <inheritdoc />
-    public partial class Fixing : Migration
+    public partial class AddCol : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

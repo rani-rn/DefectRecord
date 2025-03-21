@@ -80,14 +80,15 @@ namespace DefectRecord.Controllers
 
             var report = new DefectReport()
             {
-                SerialNumber = defectReport.SerialNumber,
                 Reporter = defectReport.Reporter,
-                RoleId = defectReport.RoleId,
+                ReportDate = defectReport.ReportDate,
+                ProdQty = defectReport.ProdQty,
+                SectionId = defectReport.SectionId,
                 DefectId = defectReport.DefectId,
                 LineProductionId = defectReport.LineProductionId,
                 Description = defectReport.Description,
+                DefectQty = defectReport.DefectQty,
                 Status = defectReport.Status,
-                ReportDate = DateTime.Now,
             };
 
             _context.DefectReports.Add(report);
@@ -102,7 +103,7 @@ namespace DefectRecord.Controllers
             var defectReports = _context.DefectReports
                                 .Include(d => d.Defect)
                                 .Include(d => d.LineProduction)
-                                .Include(d => d.Role)
+                                .Include(d => d.Section)
                                 .ToList();
             return View(defectReports);
         }
@@ -113,7 +114,7 @@ namespace DefectRecord.Controllers
             var defectReport = await _context.DefectReports
                 .Include(d => d.Defect)
                 .Include(d => d.LineProduction)
-                .Include(d => d.Role)
+                .Include(d => d.Section)
                 .FirstOrDefaultAsync(d => d.ReportId == id);
 
             if (defectReport == null)
@@ -139,12 +140,14 @@ namespace DefectRecord.Controllers
                 return NotFound();
             }
             existingReport.Reporter = defectReport.Reporter;
-            existingReport.RoleId = defectReport.RoleId;
+            existingReport.ReportDate = defectReport.ReportDate;
+            existingReport.ProdQty = defectReport.ProdQty;
+            existingReport.SectionId = defectReport.SectionId;
             existingReport.LineProductionId = defectReport.LineProductionId;
             existingReport.DefectId = defectReport.DefectId;
             existingReport.Description = defectReport.Description;
             existingReport.Status = defectReport.Status;
-
+            existingReport.DefectQty = defectReport.DefectQty;
             _context.DefectReports.Update(existingReport);
             await _context.SaveChangesAsync();
 
@@ -170,8 +173,8 @@ namespace DefectRecord.Controllers
 
         private async Task LoadViewBagData()
         {
-            ViewBag.UserRoles = await _context.UserRoles
-                .Select(r => new { r.RoleId, r.RoleName })
+            ViewBag.Sections = await _context.Sections
+                .Select(s => new { s.SectionId, s.SectionName })
                 .ToListAsync();
 
             ViewBag.Defects = await _context.Defect

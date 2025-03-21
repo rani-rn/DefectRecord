@@ -34,7 +34,12 @@ namespace DefectRecord.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SectionId")
+                        .HasColumnType("int");
+
                     b.HasKey("DefectId");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Defect");
                 });
@@ -50,11 +55,16 @@ namespace DefectRecord.Migrations
                     b.Property<int>("DefectId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DefectQty")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LineProductionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdQty")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReportDate")
@@ -64,13 +74,8 @@ namespace DefectRecord.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("SectionId")
                         .HasColumnType("int");
-
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -82,7 +87,7 @@ namespace DefectRecord.Migrations
 
                     b.HasIndex("LineProductionId");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("SectionId");
 
                     b.ToTable("DefectReports");
                 });
@@ -104,21 +109,33 @@ namespace DefectRecord.Migrations
                     b.ToTable("LineProductions");
                 });
 
-            modelBuilder.Entity("UserRole", b =>
+            modelBuilder.Entity("Section", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("SectionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
 
-                    b.Property<string>("RoleName")
+                    b.Property<string>("SectionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoleId");
+                    b.Property<int>("SectionTotal")
+                        .HasColumnType("int");
 
-                    b.ToTable("UserRoles");
+                    b.HasKey("SectionId");
+
+                    b.ToTable("Sections");
+                });
+
+            modelBuilder.Entity("Defect", b =>
+                {
+                    b.HasOne("Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionId");
+
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("DefectReport", b =>
@@ -135,9 +152,9 @@ namespace DefectRecord.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UserRole", "Role")
+                    b.HasOne("Section", "Section")
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -145,7 +162,7 @@ namespace DefectRecord.Migrations
 
                     b.Navigation("LineProduction");
 
-                    b.Navigation("Role");
+                    b.Navigation("Section");
                 });
 #pragma warning restore 612, 618
         }

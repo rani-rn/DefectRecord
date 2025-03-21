@@ -23,12 +23,10 @@ body[b-8wt96olzdq] {
   width: 100%;
   background-color: white;
 }
-
 .container-fluid img[b-8wt96olzdq] {
   max-width: 200px !important; 
   height: auto;
 }
-
 .sidebar_menu[b-8wt96olzdq] {
   position: fixed;
   height: 100vh;
@@ -43,7 +41,6 @@ body[b-8wt96olzdq] {
   left: 0;
   transition: all 0.3s ease-in-out;
 }
-
 .sidebar_menu .btn-input[b-8wt96olzdq] {
   background-color: white;
   border-radius: 24px;
@@ -56,41 +53,31 @@ body[b-8wt96olzdq] {
   cursor: pointer;
   transition: 0.3s;
 }
-
 .sidebar_menu .btn-input:hover[b-8wt96olzdq] {
   background-color: #e0e0e0;
 }
-
-
-
 .nav-btn[b-8wt96olzdq] {
   color: white !important;
 }
-
 .nav-btn:hover[b-8wt96olzdq] {
   background-color: #d1e8ff;
   color: #0F58A8;
 }
-
 .nav-link span[b-8wt96olzdq]{
   display: inline !important;
   color: white;
 }
-
 .sidebar_menu[b-8wt96olzdq] {
   color: white;
 }
-
 .sidebar_menu ul[b-8wt96olzdq] {
   list-style: none;
   padding: 0;
 }
-
 .sidebar_menu li[b-8wt96olzdq] {
   margin-bottom: 20px;
   text-align: center;
 }
-
 .sidebar_menu button[b-8wt96olzdq]{
   background-color: none;
   text-decoration: none;
@@ -101,11 +88,9 @@ body[b-8wt96olzdq] {
   gap: 10px; 
   align-items: center;
 }
-
 .sidebar_menu button :hover[b-8wt96olzdq] {
   color: #d1e8ff;
 }
-
 .footer[b-8wt96olzdq] {
   width: 100%;
   text-align: right;
@@ -113,7 +98,6 @@ body[b-8wt96olzdq] {
   font-size: 14px;
   color: #333;
 }
-
 .toggle-btn[b-8wt96olzdq] {
   position: fixed;
   top: 20px;
@@ -128,7 +112,6 @@ body[b-8wt96olzdq] {
   display: none;
   z-index: 1002;
 }
-
 @media screen and (max-width: 768px) {
   .sidebar_menu[b-8wt96olzdq] {
     width: 55%;
@@ -144,33 +127,26 @@ body[b-8wt96olzdq] {
     position: fixed;
     transition: top 0.3s ease-in-out;
   }
-
   .sidebar_menu ul[b-8wt96olzdq] {
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 0;
   }
-
   .sidebar_menu li[b-8wt96olzdq] {
     margin: 10px 0;
   }
-
   .sidebar_menu .btn-input[b-8wt96olzdq] {
     font-size: small;
     padding: 5px 15px;
     margin-bottom: 10px;
   }
-
   .toggle-btn[b-8wt96olzdq] {
     display: block;
-   
   }
-
   .sidebar_menu.closed[b-8wt96olzdq] {
     right: -100%;
   }
-
   .nav-link span[b-8wt96olzdq] {
     display: inline;
   }

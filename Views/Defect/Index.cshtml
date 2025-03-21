@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <style>
     .container {
         display: flex;
@@ -67,10 +66,8 @@
         border: 1px solid #ccc;
     }
 </style>
-
 <div class="container">
     <h2 class="text-header">Dashboard</h2>
-
     <div class="filters">
         <div>
             <label for="lineProductionFilter" class="form-label">Filter by Line Production</label>
@@ -82,7 +79,6 @@
                 }
             </select>
         </div>
-
         <div>
             <label for="timeFilter" class="form-label">Filter by Time Period</label>
             <select id="timeFilter" name="timePeriod" class="form-control">
@@ -92,12 +88,10 @@
             </select>
         </div>
     </div>
-
     <div class="dashboard-container">
         <div class="chart-container">
             <canvas id="chart"></canvas>
         </div>
-        
         <div class="summary-boxes">
             <div class="summary-box">
                 <span>Daily</span>
@@ -114,7 +108,6 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

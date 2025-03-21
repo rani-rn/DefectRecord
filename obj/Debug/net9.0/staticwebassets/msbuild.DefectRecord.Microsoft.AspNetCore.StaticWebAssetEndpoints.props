@@ -4,25 +4,25 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 03:31:28 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc=\u0022"},{"Name":"Last-Modified","Value":"Thu, 20 Mar 2025 08:50:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DefectRecord/css/site.m8io6rg0j7.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"m8io6rg0j7"},{"Name":"integrity","Value":"sha256-qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc="},{"Name":"label","Value":"_content/DefectRecord/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 03:31:28 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/DefectRecord/DefectRecord.4mizna9eld.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DefectRecord.4mizna9eld.bundle.scp.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4mizna9eld"},{"Name":"integrity","Value":"sha256-BMgGBE6NMqiWxSmrYfyOcQCmy3ypQuxAXHAeetnOfaw="},{"Name":"label","Value":"_content/DefectRecord/DefectRecord.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3233"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BMgGBE6NMqiWxSmrYfyOcQCmy3ypQuxAXHAeetnOfaw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 08:57:39 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022qnsFz\u002B6aTAabn9XC2Nbn9LMPPMsFouBm9DaFwp7uojc=\u0022"},{"Name":"Last-Modified","Value":"Thu, 20 Mar 2025 08:50:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DefectRecord/DefectRecord.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DefectRecord.4mizna9eld.bundle.scp.css'))</AssetFile>
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DefectRecord.cumjn99vwo.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BMgGBE6NMqiWxSmrYfyOcQCmy3ypQuxAXHAeetnOfaw="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3233"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BMgGBE6NMqiWxSmrYfyOcQCmy3ypQuxAXHAeetnOfaw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 08:57:39 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-nHqzcq6YOoLRlj5cVScS0P3Cvw7FR0xNQQHk5qbq/5Y="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3182"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nHqzcq6YOoLRlj5cVScS0P3Cvw7FR0xNQQHk5qbq/5Y=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 01:12:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DefectRecord/DefectRecord.cumjn99vwo.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DefectRecord.cumjn99vwo.bundle.scp.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cumjn99vwo"},{"Name":"integrity","Value":"sha256-nHqzcq6YOoLRlj5cVScS0P3Cvw7FR0xNQQHk5qbq/5Y="},{"Name":"label","Value":"_content/DefectRecord/DefectRecord.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3182"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nHqzcq6YOoLRlj5cVScS0P3Cvw7FR0xNQQHk5qbq/5Y=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 01:12:42 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DefectRecord/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>

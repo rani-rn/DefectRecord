@@ -44,47 +44,50 @@
 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 <div class="">
     <h2 class="text-header">Input Defect</h2>
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <form class="form-input" method="post" asp-action="Input">
-                <div class="mb-3">
-                    <label for="serialNumber" class="form-label">Serial Number</label>
-                    <input asp-for="SerialNumber" type="text" id="serialNumber" name="SerialNumber"
-                        class="form-control">
-                </div>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="reporter" class="form-label">Reporter</label>
                         <input asp-for="Reporter" type="text" id="reporter" name="Reporter" class="form-control">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="userRole" class="form-label">Role</label>
-                        <select id="userRole" name="RoleId" asp-for="RoleId" class="form-control">
-                            <option value="">Select Your Role</option>
-                            @foreach (var userRole in (ViewBag.UserRoles ?? new List<UserRole>()))
-                            {
-                                <option value="@userRole.RoleId">@userRole.RoleName</option>
-                            }
-                        </select>
-
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" id="date" name="ReportDate" class="form-control" asp-for="ReportDate">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="lineProduction" class="form-label">Line Production</label>
-                    <select id="lineProduction" name="LineProductionId" class="form-control" asp-for="LineProductionId">
-                        <option value="">Select Line Production</option>
-                        @foreach (var line in (ViewBag.LineProductions ?? new List<LineProduction>()))
-                        {
-                            <option value="@line.Id">@line.LineProductionName</option>
-                        }
-                    </select>
+                    <label for="qtyProd" class="form-label">Production Quantity</label>
+                    <input type="number" id="qtyProd" name="ProdQty" class="form-control" asp-for="ProdQty">
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="section" class="form-label">Section</label>
+                        <select id="section" name="SectionId" class="form-control" asp-for="SectionId">
+                            <option value="">Select Section</option>
+                            @foreach (var sec in (ViewBag.Sections ?? new List<Section>()))
+                            {
+                                <option value="@sec.SectionId">@sec.SectionName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="lineProduction" class="form-label">Line Production</label>
+                        <select id="lineProduction" name="LineProductionId" class="form-control"
+                            asp-for="LineProductionId">
+                            <option value="">Select Line Production</option>
+                            @foreach (var line in (ViewBag.LineProductions ?? new List<LineProduction>()))
+                            {
+                                <option value="@line.Id">@line.LineProductionName</option>
+                            }
+                        </select>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="defectRecord" class="form-label">Defect Record</label>
+                    <label for="defectRecord" class="form-label">Defect Item</label>
                     <select id="defectRecord" name="DefectId" class="form-control" asp-for="DefectId">
                         <option value="">Select Defect</option>
                         @foreach (var defect in (ViewBag.Defects ?? new List<Defect>()))
@@ -97,14 +100,21 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea id="description" asp-for="Description" class="form-control" rows="3"></textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select id="status" name="Status" class="form-control" asp-for="Status">
-                        <option value="">Select Status</option>
-                        <option value="Repair">Repair</option>
-                        <option value="Pending">Pending</option>
-                    </select>
-                </div><br>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="status" class="form-label">Status</label>
+                        <select id="status" name="Status" class="form-control" asp-for="Status">
+                            <option value="">Select Status</option>
+                            <option value="Repair">Repairable</option>
+                            <option value="Dispose">Dispose</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="qtyDefect" class="form-label">Defect Quantity</label>
+                        <input type="number" id="qtyDefect" name="DefectQty" class="form-control" asp-for="DefectQty">
+                    </div>
+                </div>
+                <br>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-success" id="saveButton">Save</button>
                     <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
@@ -126,24 +136,25 @@
 
     document.getElementById("saveButton").addEventListener("click", function (event) {
 
-        let serialNumber = document.getElementById("serialNumber").value.trim();
         let reporter = document.getElementById("reporter").value.trim();
-        let userRole = document.getElementById("userRole").value;
+        let date = document.getElementById("date").value.trim();
+        let qtyProd = document.getElementById("qtyProd").value;
+        let section = document.getElementById("section").value;
         let lineProduction = document.getElementById("lineProduction").value;
         let defectRecord = document.getElementById("defectRecord").value;
+        let description = document.getElementById("description").value.trim();
         let status = document.getElementById("status").value;
-
+        let qtyDefect = document.getElementById("qtyDefect").value;
         let form = document.querySelector(".form-input");
-
         let emptyFields = [];
-
-        if (!serialNumber) emptyFields.push("Serial Number");
         if (!reporter) emptyFields.push("Reporter");
-        if (!userRole) emptyFields.push("Role");
+        if (!date) emptyFields.push("Date");
+        if (!qtyProd) emptyFields.push("Production Quantity");
+        if (!section) emptyFields.push("Section");
         if (!lineProduction) emptyFields.push("Line Production");
         if (!defectRecord) emptyFields.push("Defect Record");
         if (!status) emptyFields.push("Status");
-
+        if (!qtyDefect) emptyFields.push("Defect Quantity");
         if (emptyFields.length > 0) {
             Swal.fire({
                 title: "Missing Fields!",

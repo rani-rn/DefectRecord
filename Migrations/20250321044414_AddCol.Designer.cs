@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DefectRecord.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250311013847_Init")]
-    partial class Init
+    [Migration("20250321044414_AddCol")]
+    partial class AddCol
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,12 @@ namespace DefectRecord.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SectionId")
+                        .HasColumnType("int");
+
                     b.HasKey("DefectId");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Defect");
                 });
@@ -50,17 +55,19 @@ namespace DefectRecord.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReportId"));
 
-                    b.Property<string>("DefectName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("DefectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DefectQty")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LineProductionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdQty")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReportDate")
@@ -70,16 +77,20 @@ namespace DefectRecord.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReportId");
+
+                    b.HasIndex("DefectId");
+
+                    b.HasIndex("LineProductionId");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("DefectReports");
                 });
@@ -101,21 +112,60 @@ namespace DefectRecord.Migrations
                     b.ToTable("LineProductions");
                 });
 
-            modelBuilder.Entity("UserRole", b =>
+            modelBuilder.Entity("Section", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("SectionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
 
-                    b.Property<string>("RoleName")
+                    b.Property<string>("SectionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoleId");
+                    b.Property<int>("SectionTotal")
+                        .HasColumnType("int");
 
-                    b.ToTable("UserRoles");
+                    b.HasKey("SectionId");
+
+                    b.ToTable("Sections");
+                });
+
+            modelBuilder.Entity("Defect", b =>
+                {
+                    b.HasOne("Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionId");
+
+                    b.Navigation("Section");
+                });
+
+            modelBuilder.Entity("DefectReport", b =>
+                {
+                    b.HasOne("Defect", "Defect")
+                        .WithMany()
+                        .HasForeignKey("DefectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LineProduction", "LineProduction")
+                        .WithMany()
+                        .HasForeignKey("LineProductionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Defect");
+
+                    b.Navigation("LineProduction");
+
+                    b.Navigation("Section");
                 });
 #pragma warning restore 612, 618
         }

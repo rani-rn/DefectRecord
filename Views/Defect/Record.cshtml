@@ -13,14 +13,15 @@
                     <thead class="table-light rounded-top-3">
                         <tr class="text-center">
                             <th>No</th>
-                            <th>Serial Number</th>
-                            <th>Defect</th>
+                            <th>Date</th>
+                            <th>Production Qty</th>
+                            <th>Report by</th>
+                            <th>Section</th>
+                            <th>Line Production</th>
+                            <th>Item Defect</th>
                             <th>Description</th>
                             <th>Status</th>
-                            <th>Line Production</th>
-                            <th>Report By</th>
-                            <th>Role</th>
-                            <th>Report Date</th>
+                            <th>Defect Qty</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -32,14 +33,16 @@
                         {
                             <tr id="row-@defect.ReportId" class="text-center">
                                 <td>@index</td>
-                                <td>@defect.SerialNumber</td>
+                                <td>@defect.ReportDate</td>
+                                <td>@defect.ProdQty</td>
+                                <td>@defect.Reporter</td>
+                                <td>@defect.Section?.SectionName</td>
+                                <td>@defect.LineProduction?.LineProductionName</td>
                                 <td>@defect.Defect?.DefectName</td>
                                 <td>@defect.Description</td>
                                 <td>@defect.Status</td>
-                                <td>@defect.LineProduction?.LineProductionName</td>
-                                <td>@defect.Reporter</td>
-                                <td>@defect.Role?.RoleName</td>
-                                <td>@defect.ReportDate</td>
+                                <td>@defect.DefectQty</td>
+                                
                                 <td>
                                     <a asp-controller="Defect" asp-action="Update" asp-route-id="@defect.ReportId"
                                         class="btn btn-sm btn-warning">Edit</a>
